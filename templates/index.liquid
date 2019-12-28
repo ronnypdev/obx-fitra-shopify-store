@@ -1,10 +1,56 @@
-{% for product in collections.frontpage.products limit:4 %}
-  <div>
-    <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-    {{ product.price | money }}
-    {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
-    <a href="{{ product.url | within: collection }}">
-      <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-    </a>
-  </div>
-{% endfor %}
+{% assign mainProduct = all_products['fitra-activity-band'] %}
+<h1>{{ mainProduct.title }}</h1>
+
+<div id="product-images">
+    {% for image in mainProduct.images %}
+        <div class="single-proudct-image">
+            <img src="{{ image | img_url: 'large' }}" alt="{{ mainProduct.title }}">
+        </div>
+    {% endfor %}
+</div>
+
+<div id="product-info">
+    <div class="headline">
+        <h2>
+            Hassel free fitness tracking
+        </h2>
+    </div>
+
+    <div class="description">
+        <h3>Information</h3>
+        {{ mainProduct.description }}
+    </div>
+
+    <div class="details">
+        <ul>
+            <li>List item 1</li>
+            <li>List item 2</li>
+        </ul>
+    </div>
+
+    <div class="form-wrapper">
+        <form action="/cart/add" enctype="multipart/form-data" id="AddToCartForm" method="post">
+            <select id="productSelect" name="id">
+                {% for variant in mainProduct.variants %}
+                    {% if variant.available %}
+                        <option value="{{ variant.id }}">
+                            {{ variant.title }}
+                            -
+                            {{ variant.price | money_with_currency }}
+                        </option>
+                    {% else %}
+                        <option disabled="disabled">
+                            {{ variant.title }}
+                            - sold out
+                        </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            {{ current_variant.price | money }}
+            <label for="Quantity">quantity</label>
+            <input id="Quantity" min="1" name="quantity" type="number" value="1">
+            <button id="AddToCart" name="add" type="submit">Add to cart</button>
+        </form>
+    </div><!-- End Form Wrapper  -->
+
+</div><!-- End Product Info -->
