@@ -5,8 +5,7 @@
     </span>
 </h1>
 {% if cart.item_count > 0 %}
-    <h2>All preorders ship
-                                    free this March.</h2>
+    <h2>{{ 'cart.general.preorder_info' | t }}</h2>
     <form action="/cart" method="post" novalidate>
         <table>
             <thead>
@@ -35,22 +34,29 @@
         <table id="cart-totals">
             <tbody>
                 <tr>
-                    <td>Shipping</td>
-                    <td>Free</td>
+                    <td>{{ 'cart.lines.shipping' | t }}</td>
+                    <td>{{ 'cart.lines.free' | t }}</td>
                 </tr>
                 <tr>
-                    <td>Subtotal</td>
+                    <td>{{ 'cart.lines.subtotal' | t }}</td>
                     <td>{{ cart.total_price | money }}</td>
                 </tr>
             </tbody>
         </table>
-        <button name="checkout" type="submit">Checkout</button>
+        <button name="checkout" type="submit">{{ 'cart.general.checkout' | t }}</button>
     </form>
 
     <p>
-        Any questions?
-        <a href="mailto:support@getfitra.com">support@getfitra.com</a>
+        {{ 'cart.general.support_title' | t }}
+        <br>
+        <a href="mailto:{{ 'cart.general.support_email' | t }}">{{ 'cart.general.support_email' | t }}</a>
     </p>
 {% else %}
     {{ 'cart.general.empty' | t }}
+    {% for 1 in (1..3) %}
+        <div class="empty-line"></div>
+    {% endfor %}
+    <a href="/">
+        {{ 'cart.general.back' | t }}
+    </a>
 {% endif %}
