@@ -120,9 +120,18 @@ ol {
 .main-content {
   min-height: 100vh;
   padding: $gutter-global;
-  //   width: calc(50% + #{$gutter-global/2});
-  //   margin-left: auto;
-  //   grid-template-rows: minmax(max-content, auto) minmax(min-content, max-content);
+  width: calc(50% + #{$gutter-global/2});
+  margin-left: auto;
+  grid-template-rows: minmax(max-content, auto) minmax(min-content, max-content);
+}
+
+.sticky-side-image {
+  position: fixed;
+  left: 0;
+  width: 50%;
+  top: $gutter-global;
+  bottom: $gutter-global;
+  background: wheat;
 }
 
 /**
@@ -132,4 +141,12 @@ ol {
 */
 
 #page-index {
+}
+
+#product-info {
+  grid-template-rows: minmax(max-content, auto) minmax(min-content, max-content);
+}
+
+.headline {
+  padding-bottom: $line-global * 3;
 }
