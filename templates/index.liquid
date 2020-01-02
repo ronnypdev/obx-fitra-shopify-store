@@ -5,7 +5,7 @@
     <div class="sticky-side-image" id="product-images">
         {% for image in mainProduct.images %}
             <div class="single-proudct-image">
-                <img src="{{ image | img_url: 'large' }}" alt="{{ mainProduct.title }}">
+                <img src="{{ image | img_url: 'x1440' }}" alt="{{ mainProduct.title }}">
             </div>
         {% endfor %}
     </div>
