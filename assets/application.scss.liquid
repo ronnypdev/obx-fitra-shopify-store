@@ -89,3 +89,47 @@ ol {
   padding: 0;
   font-weight: 400;
 }
+/**
+====================================
+    ==> Grid styles Partial <==
+====================================
+*/
+
+.grid {
+  display: grid;
+  grid-column-gap: $gutter-global;
+  grid-row-gap: $gutter-global;
+}
+
+.two-columns {
+  grid-template-columns: 1fr 1fr;
+}
+
+.valign-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.valign-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.main-content {
+  min-height: 100vh;
+  padding: $gutter-global;
+  //   width: calc(50% + #{$gutter-global/2});
+  //   margin-left: auto;
+  //   grid-template-rows: minmax(max-content, auto) minmax(min-content, max-content);
+}
+
+/**
+====================================
+    ==> Index Styles <==
+====================================
+*/
+
+#page-index {
+}
