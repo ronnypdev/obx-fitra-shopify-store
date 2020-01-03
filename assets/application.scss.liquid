@@ -135,13 +135,36 @@ label {
   color: $color-label;
 }
 
-select {
-  @include reset-input;
-  width: 100%;
-  font-size: $body-font-size;
-  line-height: $line-global;
-  padding: $line-global;
-  border: $standard-border;
+.styled-select {
+  position: relative;
+
+  select {
+    @include reset-input;
+    width: 100%;
+    font-size: $body-font-size;
+    line-height: $line-global;
+    padding: $line-global;
+    border: $black-border;
+  }
+
+  .select-arrow {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    width: $line-global * 3;
+    text-align: center;
+    line-height: $line-global * 3;
+    border-left: $black-border;
+    pointer-events: none;
+
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 16px;
+      height: 16px;
+    }
+  }
 }
 
 button {
@@ -216,6 +239,10 @@ button {
 
 #product-info {
   grid-template-rows: minmax(max-content, auto) minmax(min-content, max-content);
+}
+
+#product-info-content {
+  grid-row-gap: $gutter-global / 2;
 }
 
 .headline {
