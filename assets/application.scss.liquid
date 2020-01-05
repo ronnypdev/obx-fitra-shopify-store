@@ -228,6 +228,51 @@ button {
   }
 }
 
+.link-to-cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: $gutter-global;
+  color: $color-text;
+
+  .cart-item-count {
+    display: block;
+    font-size: 0px;
+    width: 10px;
+    height: 10px;
+    background: $color-border;
+    border-radius: 100%;
+    margin-top: 4px;
+  }
+
+  .cart-text {
+    display: none;
+    position: absolute;
+    right: calc(100% - #{$gutter-global/2});
+    top: $gutter-global;
+    white-space: nowrap;
+  }
+
+  &.cart-filled {
+    .cart-item-count {
+      width: 20px;
+      height: 20px;
+      background: $color-accent;
+      font-size: $label-font-size;
+      line-height: $line-global;
+      color: $white;
+      text-align: center;
+      margin-top: 0;
+    }
+  }
+
+  &:hover {
+    .cart-text {
+      display: block;
+    }
+  }
+}
+
 /**
 ====================================
     ==> Index Styles <==
