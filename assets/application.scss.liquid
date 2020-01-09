@@ -1,0 +1,481 @@
+/**
+====================================
+    ==> Variables Partial <==
+====================================
+*/
+$black: #000000;
+$white: #ffffff;
+$color-accent: #ff3700;
+$color-text: #555555;
+$color-label: #707070;
+$color-border: #dedede;
+$color-empty-bg: #bbbbbb;
+
+$main-font: 'Rubik', Arial, Helvetica, sans-serif;
+$line-global: 20px;
+$gutter-global: $line-global * 2;
+
+$body-font-size: 15px;
+$label-font-size: 12px;
+
+$standard-border: 1px solid $color-border;
+$black-border: 1px solid $black;
+/**
+====================================
+    ==> Mixin App Partial <==
+====================================
+*/
+
+@mixin reset-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  text-align: left;
+}
+/**
+====================================
+    ==> Base styles Partial <==
+====================================
+*/
+
+* {
+  font-family: $main-font;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: $black;
+  line-height: $line-global;
+}
+
+body {
+  background-color: $white;
+  font-size: $body-font-size;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+}
+/**
+====================================
+    ==> Style Guide <==
+====================================
+*/
+.headline-big {
+  font-size: 22vw;
+  line-height: 1;
+}
+
+h2 {
+  font-size: $body-font-size * 2;
+  line-height: $line-global * 2;
+}
+
+h3 {
+  font-size: $body-font-size;
+  line-height: $line-global;
+}
+
+p,
+ul,
+ol {
+  font-size: $body-font-size;
+  line-height: $line-global;
+  color: $color-text;
+}
+
+.list-with-stroke {
+  list-style-type: none;
+
+  li {
+    padding: $line-global 0;
+    border-top: $standard-border;
+
+    &:last-child {
+      border-bottom: $standard-border;
+    }
+  }
+}
+
+label {
+  font-size: $label-font-size;
+  color: $color-label;
+}
+
+.styled-select {
+  position: relative;
+
+  select {
+    @include reset-input;
+    width: 100%;
+    font-size: $body-font-size;
+    line-height: $line-global;
+    padding: $line-global;
+    border: $black-border;
+  }
+
+  .select-arrow {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    width: $line-global * 3;
+    text-align: center;
+    line-height: $line-global * 3;
+    border-left: $black-border;
+    pointer-events: none;
+
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+button {
+  @include reset-input;
+  width: 100%;
+  font-size: $body-font-size;
+  line-height: $line-global;
+  padding: $line-global;
+  background-color: $black;
+  color: $white;
+}
+
+/**
+====================================
+    ==> Grid styles Partial <==
+====================================
+*/
+
+.grid {
+  display: grid;
+  grid-column-gap: $gutter-global;
+  grid-row-gap: $gutter-global;
+}
+
+.two-columns {
+  grid-template-columns: 1fr 1fr;
+}
+
+.valign-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.valign-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.main-content {
+  min-height: 100vh;
+  padding: $gutter-global;
+  width: calc(50% + #{$gutter-global/2});
+  margin-left: auto;
+  grid-template-rows: minmax(max-content, auto) minmax(min-content, max-content);
+}
+
+.sticky-side-image {
+  position: fixed;
+  left: 0;
+  top: $gutter-global;
+  bottom: $gutter-global;
+  width: calc(50% - #{$gutter-global/2});
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.cart-item-count {
+  color: $white;
+  text-align: center;
+  border-radius: 100%;
+}
+
+.link-to-home,
+.link-to-cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: $gutter-global;
+  color: $color-text;
+
+  .cart-item-count {
+    display: block;
+    font-size: 0px;
+    width: 10px;
+    height: 10px;
+    background: $color-border;
+    margin-top: 4px;
+  }
+
+  .cart-text {
+    display: none;
+    position: absolute;
+    right: calc(100% - #{$gutter-global/2});
+    top: $gutter-global;
+    white-space: nowrap;
+  }
+
+  &.cart-filled {
+    .cart-item-count {
+      width: 20px;
+      height: 20px;
+      background: $color-accent;
+      font-size: $label-font-size;
+      line-height: $line-global;
+      margin-top: 0;
+    }
+  }
+
+  &:hover {
+    .cart-text {
+      display: block;
+    }
+  }
+}
+
+.link-to-home {
+  color: $black;
+}
+
+/**
+====================================
+    ==> Index Styles <==
+====================================
+*/
+
+#page-index {
+}
+
+#product-info {
+}
+
+#product-info-content {
+  grid-row-gap: $gutter-global / 2;
+}
+
+.headline {
+  padding-bottom: $line-global * 3;
+}
+
+.single-proudct-image {
+  width: 100%;
+  height: 100%;
+}
+
+.description-content {
+  margin-top: $line-global;
+}
+
+.form-wrapper {
+  padding-top: $line-global * 3;
+}
+
+#add-to-cart-form {
+  margin-top: -($line-global);
+}
+
+#add-to-cart-button {
+  background: $color-accent;
+  .product-price {
+    float: right;
+    font-size: $label-font-size;
+  }
+}
+/**
+====================================
+    ==> Cart Styles <==
+====================================
+*/
+#cart {
+  background: $color-empty-bg;
+  color: $white;
+
+  &.cart-filled {
+    background: $color-accent;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  #cart-title {
+    position: relative;
+  }
+
+  #cart:not(.cart-filled) #cart-title {
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    text-fill-color: transparent;
+    -webkit-text-stroke-color: $white;
+    -moz-text-stroke-color: $white;
+    text-stroke-color: $white;
+    -webkit-text-stroke-width: 2px;
+    -moz-text-stroke-width: 2px;
+    text-stroke-width: 2px;
+  }
+
+  .cart-item-count {
+    display: block;
+    font-size: 0.08em;
+    border: 2px solid $white;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    position: absolute;
+    top: 2em;
+    right: 0;
+  }
+
+  &.cart-filled {
+    .cart-item-count {
+      border: 0;
+      background: $black;
+    }
+
+    #cart-content {
+      padding-bottom: $line-global * 8;
+      grid-template-rows: auto $line-global * 2;
+    }
+  }
+}
+
+#cart-empty-lines,
+#back-to-fitra {
+  grid-column: 2;
+}
+
+.empty-line {
+  border-top: 1px solid $white;
+  height: $line-global * 3;
+}
+
+.empty-line:first-child {
+  margin-top: $line-global;
+}
+
+.empty-line:last-child {
+  border-bottom: 1px solid $white;
+}
+
+#back-to-fitra {
+  margin-bottom: $line-global;
+}
+
+#cart-lines {
+}
+
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  font-weight: 400;
+  padding-top: $line-global;
+  padding-bottom: $line-global;
+}
+
+tbody tr {
+  border-top: 1px solid $white;
+}
+
+td {
+  padding-top: $line-global;
+  padding-bottom: $line-global;
+  position: relative;
+}
+
+td:last-child {
+  text-align: right;
+  vertical-align: top;
+}
+
+.remove-line {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  padding: $line-global $line-global/2;
+  display: block;
+  text-align: center;
+  width: $gutter-global;
+}
+
+.remove-text {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  padding: $line-global 0 $line-global $line-global;
+  display: none;
+  background: $color-accent;
+  color: $black;
+}
+
+.remove-line:hover .remove-text {
+  display: block;
+}
+
+#cart-totals {
+  border-bottom: 1px solid $white;
+}
+
+#cart-form-wrap {
+  grid-row: span 2;
+  position: relative;
+}
+
+#checkout-button {
+  position: absolute;
+  width: 100%;
+  bottom: -($line-global * 8);
+  left: 0;
+}
+
+#cart-support p {
+  color: inherit;
+}
