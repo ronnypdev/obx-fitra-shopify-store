@@ -7,7 +7,9 @@
   <link rel="canonical" href="{{ canonical_url }}">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   {{ content_for_header }} <!-- Header hook for plugins -->
+   <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
   {{ 'application.scss.css' | asset_url | stylesheet_tag }}
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
   {{ 'application.js' | asset_url | script_tag }}
 </head>
 <body class="template-{{template}} {{template}}">
@@ -30,7 +32,11 @@
       <a href="/" class="link-to-home">{{ 'cart.button.close' | t }}</a>
   {% endif %}
 
-  <main role="main">
+
+    {% if template != 'cart' and template != 'index' %}
+      {% include 'error-404' %}
+    {% endif %}
+    <main role="main" {% if template != 'cart' and template != 'index' %} style="display:none;" {% endif %}>
     {{ content_for_layout }}
   </main>
 </body>
